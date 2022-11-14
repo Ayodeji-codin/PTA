@@ -5,10 +5,7 @@ from .forms import *
 
 # Create your views here.
 def  home(request): 
-    a = 5
-    b = 6
-    c = a+b
-    return render(request,'home.html',{'hello':c,'user':request.user.username}) 
+    return render(request,'home.html',{'user':request.user.username}) 
 
 def signup(request):
     if request.method == 'POST':
