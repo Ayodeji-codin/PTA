@@ -2,10 +2,51 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
 from django.http import HttpResponse
 from .forms import *
+from .models import *
 
 # Create your views here.
 def  home(request): 
     return render(request,'home.html',{'user':request.user.username}) 
+
+def student(request):
+    student = Student.objects.get(id=2)
+    evaluation = Evaluation.objects.filter(student = student.id).all()
+    return render(request,'student.html',{
+        'student':student,
+        'eval':evaluation
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def signup(request):
     if request.method == 'POST':
