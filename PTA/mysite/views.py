@@ -9,13 +9,19 @@ def  home(request):
     return render(request,'home.html',{'user':request.user.username}) 
 
 def student(request):
-    evaluation = Evaluation.objects.filter(id_num=1)
-    student = Student.objects.all()
-    return render(request,'student.html',{
-        'student':student,
-        'eval':evaluation
-    })
-
+    if request.method == 'POST':
+        form = ResultCheckerForm(request.POST)
+        if form.is_valid:
+            id_num = request.POST['id_num']
+            evaluation = Evaluation.objects.filter(id_num=id_num)
+            student = Student.objects.all()
+            return render(request,'student.html',{
+                'student':student,
+                'eval':evaluation
+            })
+    else:
+        form = ResultCheckerForm()
+        return render(request, 'student.html',{'form':form})
 
 
 

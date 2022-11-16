@@ -10,6 +10,9 @@
 
 
 
+
+{% if eval %}
+
 <div class="card">
     <img class="card-img-top" src="" alt="Title">
     <div class="card-body">
@@ -52,6 +55,15 @@
         </tbody>
     </table>
 </div>
+{% else %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-primary" value="check result">
+</form>
+
+{% endif %}
 
 {% endblock content %}
         
