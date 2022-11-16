@@ -13,4 +13,4 @@ class LoginForm(forms.Form):
     password = forms.CharField(max_length = 70, widget = forms.PasswordInput, label = 'Password')
 
 class ResultCheckerForm(forms.Form):
-    id_num = forms.CharField(max_length=100,label='Enter your/child registration number')
+    id_num = forms.CharField(max_length=100,label='Enter your child/your registration number')
