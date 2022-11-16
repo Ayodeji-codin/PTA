@@ -15,7 +15,8 @@ class Subject(models.Model):
         return self.subject
 
 class Student(models.Model):
-    name = models.CharField(max_length=90)
+    name = models.CharField(max_length=90,unique=True)
+    id_num = models.IntegerField(default=1,null=False,blank=False)
     date_admitted = models.DateField(auto_now_add=True)
     student_class = models.ForeignKey(Classes, on_delete=models.SET_NULL,blank=True,null=True)
     subjects = models.ManyToManyField(Subject)
@@ -25,7 +26,8 @@ class Student(models.Model):
     
 
 class Evaluation(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    id_num = models.IntegerField(default=1,null=False,blank=False)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE,related_name='student')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     assignments = models.IntegerField()
     test1 = models.IntegerField()

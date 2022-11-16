@@ -9,22 +9,12 @@ def  home(request):
     return render(request,'home.html',{'user':request.user.username}) 
 
 def student(request):
-    student = Student.objects.get(id=2)
-    evaluation = Evaluation.objects.filter(student = student.id).all()
+    evaluation = Evaluation.objects.filter(id_num=1)
+    student = Student.objects.all()
     return render(request,'student.html',{
         'student':student,
         'eval':evaluation
     })
-
-
-
-
-
-
-
-
-
-
 
 
 
