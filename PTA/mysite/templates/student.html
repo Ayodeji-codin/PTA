@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+    
+
+{% block content %}
+    
+
+
+    
+    
+
+
+
+
+{% if eval %}
+
+<div class="card">
+    <img class="card-img-top" src="" alt="Title">
+    <div class="card-body">
+        <h4 class="card-title">{{eval.student.name}}</h4>
+        <p class="card-text">Registration Number: {{eval.id_num}}</p>
+        Subject Offering:
+        {% for subject in eval.student.subjects.all %}
+        <p class="card-text">{{forloop.counter}} {{subject}}</p>
+        {% endfor %}
+        <p class="card-text">Date Admitted: {{eval.student.date_admitted}}</p>
+            
+    </div>
+</div>
+
+<div >
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">subject</th>
+                <th scope="col">class</th>
+                <th scope="col">First Test(15)</th>
+                <th scope="col">Second Test(15)</th>
+                <th scope="col">Examination (70)</th>
+                <th scope="col">Total Score (100) </th>
+                <th scope="col">Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eval in eval %}
+            <tr class="centered">
+                <td scope="row">{{eval.subject}}</td>
+                <td>{{eval.student.student_class}}</td>
+                <td>{{eval.test1}}</td>
+                <td>{{eval.test2}}</td>
+                <td>{{eval.exam}}</td>
+                <td>{{eval.get_subject_total_score}}</td>
+                <td>{{eval.grading}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-primary" value="check result">
+</form>
+
+{% endif %}
+
+{% endblock content %}
+        

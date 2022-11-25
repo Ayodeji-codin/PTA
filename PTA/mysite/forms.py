@@ -12,3 +12,6 @@ class LoginForm(forms.Form):
     name = forms.Charfield(max_length = 70,label='name')
     username = forms.CharField(max_length = 90, label = 'Username')
     password = forms.CharField(max_length = 70, widget = forms.PasswordInput, label = 'Password')
+
+class ResultCheckerForm(forms.Form):
+    id_num = forms.CharField(max_length=100,label='Enter your child/your registration number')
